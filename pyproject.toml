@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "farmtool"
+version = "1.0.0"
+description = "Farmtool to help the farmer to automate and handle Cowsheds."
+authors = ["Bishara"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.104.1"
+motor = "^3.3.2"
+uvicorn = "^0.24.0.post1"
+certifi = "^2023.11.17"
+cron-validator = "^1.0.8"
+datetime = "^5.3"
+httpx = "^0.25.2"
+requests = "^2.31.0"
+unitest = "^1.4.34"
+
+
+[tool.poetry.scripts]
+my-script = "cowshed2:cowshed2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
