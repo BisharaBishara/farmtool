@@ -17,7 +17,6 @@ httpx = "^0.25.2"
 requests = "^2.31.0"
 unitest = "^1.4.34"
 
-
 [tool.poetry.scripts]
 my-script = "cowshed2:cowshed2"
 
