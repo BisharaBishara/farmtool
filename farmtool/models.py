@@ -62,9 +62,7 @@ def is_valid_uuid(uuid_to_test, version=4):
         return False
     return str(uuid_obj) == uuid_to_test
 
-
-class CowModel(BaseModel):
-    id: Optional[str] = Field(alias="_id", default_factory=uuid.uuid4)
+class CowCreate(BaseModel):
     name: str
     sex: str
     birthdate: datetime
@@ -74,6 +72,18 @@ class CowModel(BaseModel):
     milk_production: MilkProduction
     has_calves: bool
 
+
+class CowResponse(BaseModel):
+    id: Optional[str] = Field(alias="_id", default_factory=uuid.uuid4)
+    name: str
+    sex: str
+    birthdate: datetime
+    condition: str
+    weight: Weight
+    feeding: Feeding
+    milk_production: MilkProduction
+    has_calves: bool
+    
     @validator("id")
     def validate_id(cls, value):
         if is_valid_uuid(value):
@@ -86,4 +96,4 @@ class CowUpdate(BaseModel):
     weight: Optional[Weight] = None
     feeding: Optional[Feeding] = None
     milk_production: Optional[MilkProduction] = None
-    has_calves: Optional[str] = None
+    has_calves: Optional[bool] = None

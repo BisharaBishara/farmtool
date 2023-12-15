@@ -8,12 +8,21 @@ from fastapi.testclient import TestClient
 from motor.motor_asyncio import AsyncIOMotorClient
 
 from farmtool.cows_api import router
+from dotenv import load_dotenv
+import os
+import logging
 
+
+# load environment variables from .env
+load_dotenv(".env")
+
+logging.basicConfig(filename='test_app.log', format='%(asctime)s - farmtool - %(levelname)s - %(message)s',
+                    level=logging.DEBUG)
 
 def start_application():
     app = FastAPI()
-    app.mongodb_client = AsyncIOMotorClient("mongodb+srv://Bishara:MongoDBBishara@cluster0.x8huj.mongodb.net"
-                                            "/?retryWrites=true&w=majority", tlsCAFile=certifi.where())
+    app.logger = logging.getLogger()
+    app.mongodb_client = AsyncIOMotorClient(os.environ.get("MONGODB_CONNECTION_STRING"), tlsCAFile=certifi.where())
     app.mongodb = app.mongodb_client["test_cowshed"]
 
     app.include_router(router)

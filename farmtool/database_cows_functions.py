@@ -1,5 +1,5 @@
 from starlette.requests import Request
-from .models import CowModel
+from .models import CowResponse
 
 
 async def get_cow_by_id_from_db(request: Request, cow_id: str):
@@ -25,7 +25,7 @@ async def is_unique_cow_in_db(request: Request, cow_dict: dict) -> bool:
     return cow is None
 
 
-async def create_cow_in_db(request: Request, cow: CowModel):
+async def create_cow_in_db(request: Request, cow: CowResponse):
 
     cow = await request.app.mongodb["Cows"].insert_one(cow)
 

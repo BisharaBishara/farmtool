@@ -8,20 +8,23 @@ import logging
 from dotenv import load_dotenv
 import os
 
-print(load_dotenv(".env"))
+# load environment variables from .env
+load_dotenv(".env")
 
 logging.basicConfig(filename='app.log', format='%(asctime)s - farmtool - %(levelname)s - %(message)s',
-                    level=logging.DEBUG)
+                    level=logging.INFO)
+
+# initiate fastAPI 
 app = FastAPI(
-    title="farmtools",
+    title="farmtool",
     description="Automate and Handle Cowshed",
     version="1.0.0",
 )
 
 
 @app.on_event("startup")
-async def start_db_client():
-    
+async def on_start():
+    """initiate logger and db_client"""
     app.logger = logging.getLogger()
     os.environ.get("MONGODB_CONNECTION_STRING")
     app.mongodb_client = AsyncIOMotorClient(os.environ["MONGODB_CONNECTION_STRING"], tlsCAFile=certifi.where())
@@ -29,12 +32,13 @@ async def start_db_client():
 
 
 @app.on_event("shutdown")
-async def shutdown_db_client():
+async def on_shutdown():
+    """close db_client session"""
     app.mongodb_client.close()
 
 app.include_router(CowsApiRouter)
 
-@app.get("/")
+@app.get("/", include_in_schema=False)
 async def redirect():
     return RedirectResponse(url="/docs")
 

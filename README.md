@@ -33,11 +33,11 @@ and then you can run the code or test it using the following commands.
 ```bash
 uvicorn farmtool.main:app --reload
 ```
-After running the code, a session will be opened in the following URL (http://127.0.0.1:8000)
+After running the code, a session will be opened in the following [URL](http://127.0.0.1:8000)
 
 #### - Recomendation: 
 
-Use http://127.0.0.1:8000/docs to load the swaggerUI to test endpoints seamlessly.
+Use [docs](http://127.0.0.1:8000/docs) to load the swaggerUI to test endpoints seamlessly.
 
 ###  Test code
 
@@ -46,3 +46,8 @@ pytest
 ```
 
 
+## Try it out:
+
+A publicly deployed and running version of the farmtool is available on azure.
+
+check it out: [farmtool](https://farmtool-aca-app.blackglacier-5fa52807.germanywestcentral.azurecontainerapps.io/)
