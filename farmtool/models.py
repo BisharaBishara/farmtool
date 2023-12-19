@@ -14,7 +14,7 @@ class Weight(BaseModel):
 class MilkProduction(BaseModel):
     last_milk: datetime
     cron_schedule: str
-    amount_I: int
+    amount_l: int
 
     @validator("cron_schedule")
     def validate_cron_schedule(cls, value):
