@@ -17,7 +17,7 @@ cow = {
         "milk_production": {
             "last_milk": "2023-12-09T16:46:52.682000+00:00",
             "cron_schedule": "* * * * *",
-            "amount_I": 0
+            "amount_l": 0
         },
         "has_calves": True
     }
@@ -79,7 +79,7 @@ def test_update_cow(client):
         "milk_production": {
             "last_milk": "2023-12-09T16:46:52.682000+00:00",
             "cron_schedule": "* * * * *",
-            "amount_I": 0
+            "amount_l": 0
         },
         "has_calves": True
     }
